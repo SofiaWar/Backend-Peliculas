@@ -10,7 +10,7 @@ const peliculas = [
         anio: 2001,
         genero: "Fantasía",
         director: "Chris Columbus",
-        puntuacion: 7.6
+        puntuacion: 76,
     },
     {
         id: 2,

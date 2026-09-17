@@ -12,9 +12,9 @@ const peliculas = [
         genero: "Fantasía"
     },
     {
-        id: 3,
+        id: 2,
         titulo: "Coraline",
-        anio: 2009,
+        anio: "2009",
         genero: "Animación"
     }
 ];

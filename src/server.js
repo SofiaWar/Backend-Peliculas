@@ -64,7 +64,7 @@ app.get("/peliculas/:id", async (req, res) => {
         const coleccion = db.collection("peliculas");
 
         const pelicula = await coleccion.findOne({
-            id: id
+        id: req.params.id
         });
 
         if (!pelicula) {
@@ -91,9 +91,8 @@ app.get("/peliculas/:id", async (req, res) => {
 
 app.post("/peliculas", async (req, res) => {
     try {
-        const db = client.db("peliculasDB");
-        const coleccion = db.collection("peliculas");
-
+        const db = client.db("peliculas");
+        const coleccion = db.collection("pelicula");
         const nuevaPelicula = req.body;
 
         if (
