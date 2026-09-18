@@ -1,10 +1,13 @@
 {
   "name": "backend-peliculas",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "API REST de películas con Node.js, Express y MongoDB",
+  "main": "src/server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node src/server.js",
+    "seed": "node src/seed.js",
+    "check": "node --check src/server.js && node --check src/seed.js && node --check src/models/peliculas.js",
+    "test": "npm run check && node --test test/server.test.js"
   },
   "keywords": [],
   "type": "commonjs",

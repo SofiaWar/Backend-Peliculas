@@ -10,7 +10,7 @@ const peliculas = [
         anio: 2001,
         genero: "Fantasía",
         director: "Chris Columbus",
-        puntuacion: 76,
+        puntuacion: 7.6,
     },
     {
         id: 2,
@@ -53,8 +53,15 @@ async function seed() {
         const db = client.db("peliculasDB");
         const coleccion = db.collection("peliculas");
 
-        await coleccion.deleteMany({});
-        await coleccion.insertMany(peliculas);
+        await coleccion.bulkWrite(
+            peliculas.map((pelicula) => ({
+                updateOne: {
+                    filter: { id: pelicula.id },
+                    update: { $set: pelicula },
+                    upsert: true
+                }
+            }))
+        );
 
         console.log("Películas cargadas correctamente.");
     } catch (error) {

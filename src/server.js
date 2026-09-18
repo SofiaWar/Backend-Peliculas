@@ -1,5 +1,6 @@
 const express = require("express");
 const { MongoClient } = require("mongodb");
+const peliculasModelo = require("./models/peliculas");
 require("dotenv").config();
 
 const app = express();
@@ -18,7 +19,8 @@ app.use(express.json());
 
 app.get("/", (req, res) => {
     res.json({
-        mensaje: "¡Bienvenido a nuestra API de películas!"
+        mensaje: "¡Bienvenido a nuestra API de películas!",
+        peliculasModeloDisponible: peliculasModelo.length > 0
     });
 });
 
@@ -237,6 +239,7 @@ async function iniciarServidor() {
             "Error al conectar a MongoDB:",
             error
         );
+        process.exitCode = 1;
     }
 }
 
@@ -248,4 +251,8 @@ process.on("unhandledRejection", (error) => {
     console.error("Promesa rechazada:", error);
 });
 
-iniciarServidor();
+if (require.main === module) {
+    iniciarServidor();
+}
+
+module.exports = app;
